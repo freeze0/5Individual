@@ -1,5 +1,4 @@
 import sqlite3
-import xml.dom.minidom
 
 con = sqlite3.connect('db01.db')
 cur = con.cursor()
