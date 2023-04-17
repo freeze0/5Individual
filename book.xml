@@ -2,9 +2,9 @@
 <medicine>
     <humans>
         <human id = "1" name = "Ursa" surname = "Bearovich" reason = "claw injury"/>
-        <human id = "2" name = "Vasya" surname = "Pupkin" reason = "head ache"/>
-        <human id = "3" name = "Ivan" surname = "Ivanovich" reason = "stomach ache"/>
-        <human id = "4" name = "Kirill" surname = "Artemev" reason = "ear ache"/>
+        <human id = "2" name = "Vasya" surname = "Pupkin" reason = "headache"/>
+        <human id = "3" name = "Ivan" surname = "Ivanovich" reason = "stomachache"/>
+        <human id = "4" name = "Kirill" surname = "Artemev" reason = "earache"/>
         <human id = "5" name = "Dima" surname = "Popov" reason = "insect bite"/>
         <human id = "6" name = "Daniil" surname = "Bot" reason = "asthma"/>
         <human id = "7" name = "Olya" surname = "Olegovna" reason = "cough"/>

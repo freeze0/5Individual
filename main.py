@@ -35,7 +35,10 @@ var_list_Human = [
     ('Ivan', 'Ivanov', 'Headache'),
     ('Danil', 'Liadrin', 'Toothache'),
     ('German', 'Hooch', 'Eye problems'),
-    ('Magni', 'Bronzebeard', 'Too short')
+    ('Magni', 'Bronzebeard', 'Too short'),
+    ('Vlad', 'Dulkin', 'Too short'),
+    ('Gleb', 'Hleb', 'Cough'),
+    ('Leha', 'Kekw', 'Bad vision')
 ]
 sql_human = '''
     INSERT INTO Human(name, surname, reason) VALUES (?,?,?)
@@ -48,7 +51,8 @@ var_list_Doctor = [
     ('Petr', 'Sergeevich', 'Therapist'),
     ('Dmitriy', 'Gop', 'Dentist'),
     ('Mark', 'Korben', 'Eye doctor'),
-    ('Kirill', 'Maslov', 'Extension doctor')
+    ('Kirill', 'Maslov', 'Extension doctor'),
+    ('Aboba', 'Viktorovna', 'Therapist')
 ]
 sql_doctor = '''
     INSERT INTO Doctor(name, surname, specialty) VALUES (?,?,?)
@@ -61,17 +65,30 @@ var_list_App = [
     (3, 3, '08.08.2023'),
     (4, 4, '01.10.2024'),
     (5, 5, '23.07.2023'),
-    (2, 6, '30.01.2023')
+    (2, 6, '30.01.2023'),
+    (2, 4, '10.02.2023'),
+    (2, 7, '13.02.2023'),
+    (4, 8, '16.02.2023')
 ]
 sql_app = '''INSERT INTO Appointment(id_doctor, id_human, app_time) VALUES (?,?,?)'''
 cur.executemany(sql_app, var_list_App)
 con.commit()
 
-cur.execute('SELECT * from Human')
+cur.execute('''SELECT Doctor.name, Doctor.surname, count(*) as patient_count
+    FROM Doctor
+    LEFT JOIN Appointment ON Doctor.id = Appointment.id_doctor
+    GROUP BY Doctor.name, Doctor.surname ''')
 print(cur.fetchall())
-cur.execute('''SELECT name, surname from Doctor WHERE specialty = 'Therapist' ''')
+cur.execute('''SELECT Doctor.name, Doctor.surname, Doctor.specialty
+    FROM Doctor
+    JOIN Appointment ON Doctor.id = Appointment.id_doctor
+    JOIN Human ON Human.id = Appointment.id_human
+    WHERE Human.reason = 'Toothache' ''')
 print(cur.fetchall())
-cur.execute('''SELECT name, surname from Doctor WHERE specialty = 'Therapist' ''')
+cur.execute('''SELECT Human.name, Human.surname, Appointment.app_time 
+    FROM Human 
+    JOIN Appointment ON Appointment.id_human = Human.id
+    WHERE Human.surname = 'Ivanov';''')
 print(cur.fetchall())
 
 cur.close()
