@@ -22,7 +22,7 @@ a = cur.fetchall()
 print("<table>")
 print("<th> id </th>")
 print("<th> name </th>")
-print("<th> srname </th>")
+print("<th> surname </th>")
 print("<th> reason </th>")
 for i in range(len(a)):
     print("<tr> ")
