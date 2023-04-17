@@ -75,14 +75,5 @@ print(cur.fetchall())
 cur.execute('''SELECT name, surname from Doctor WHERE specialty = 'Therapist' ''')
 print(cur.fetchall())
 
-xmldoc = xml.dom.minidom.parse('C:\\Users\\kras2\\PycharmProjects\\5Individual\\book.xml')
-humans = xmldoc.getElementsByTagName('humans')
-for human in humans:
-    id_human = human.getAttribute('id')
-    name = human.getAttribute('name')
-    surname = human.getAttribute('surname')
-    reason = human.getAttribute('reason')
-    print(name, id_human)
-
 cur.close()
 con.close()
